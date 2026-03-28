@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link href="https://fonts.cdnfonts.com/css/plateia" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLORA Tech - Контакты</title>
+    <link rel="icon" type="image/png" href="./imgs/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar">
+    <div class="logo"><img src="./imgs/logo.png" alt="FLORA Tech - logo" height="50"></div>
+    <nav class="nav-links">
+        <a href="main.html">Главная</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contacts.html" class="active">Контакты</a>
+        <a href="about_us.html">О нас</a>
+    </nav>
+</header>
+<button class="menu-btn" id="openBtn">open</button>
+
+<div class="sidebar" id="sidebar">
+  <button class="close-btn" id="closeBtn">&times;</button>
+  <nav class="sidebar-content">
+    <a href="main.html">Главная</a>
+    <a href="Profile.html">Профиль</a>
+    <a href="soc_net.html">Наши соц. сети</a>
+    <a href="news.html">Новости</a>
+    <a href="FAQ.html">FAQ</a>
+  </nav>
+</div>
+
+<script src="sidebare.js"></script>
+
+<div class="overlay" id="overlay"></div>
+    <div class="main_card_co">
+        <h2>Связь с нами</h2> 
+        <div class="·"></div>
+        <div class="sub_main_card_co">
+            <img src="imgs/phone.svg" alt="телефон" class="icon">
+            <span>8-800-555-35-35</span>
+        </div>
+        <div class="sub_main_card_co2">
+            <img src="imgs/Mail.svg" alt="наша почта" class="icon2">
+            <span>flora@tech.com</span>
+        </div>
+    <form class="contact-form">
+        <div class="main_sheet">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" placeholder="Введите имя" required>
+        </div>
+        <div class="main_sheet">
+            <label for="name">Эл. почта:</label>
+            <input type="text" id="Mail" name="Mail" placeholder="Введите почту" required>
+        </div>
+        
+        <div class="main_sheet">
+            <label for="name">Текст</label>
+            <textarea type="message" id="message" rows="5" placeholder="Ваше сообщение компании" required></textarea>
+        </div>
+    </form>
+        <button class="menu-btn-send" type="submit" class="submitbtn">Отправить</button>
+    </div>
+</body>
+</html>

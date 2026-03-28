@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacOS Glass Template</title>
+
+<style>
+/* БАЗА */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  background: url("imgs/background.png") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  margin-top: 30px;
+  padding: 12px 40px;
+
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  padding: 8px 18px;
+  border-radius: 14px;
+  transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== КОНТЕНТ ===== */
+.container {
+  margin-top: 80px;
+  width: 90%;
+  max-width: 1100px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* ===== GLASS BLOCK ===== */
+.card {
+  padding: 30px;
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+
+  color: white;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.card h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">MySite</div>
+
+  <nav class="nav-links">
+    <a href="#">Главная</a>
+    <a href="#">Проекты</a>
+    <a href="#">Контакты</a>
+    <a href="#">О нас</a>
+  </nav>
+</header>
+
+<section class="container">
+  <div class="card">
+    <h2>Блок 1</h2>
+    <p>Это информационный блок в стиле macOS с эффектом стекла.</p>
+  </div>
+
+  <div class="card">
+    <h2>Блок 2</h2>
+    <p>Размытие применяется только к стеклянным элементам.</p>
+  </div>
+
+  <div class="card">
+    <h2>Блок 3</h2>
+    <p>Фон остаётся чётким, а эффект glass создаётся через backdrop-filter.</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+
+@import url('https://fonts.cdnfonts.com/css/plateia');
+                
+ /* БАЗА */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    background: url(./imgs/background.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    margin-top: 30px;
+    padding: 12px 40px;
+
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    border-radius: 28px;
+
+    background: rgba(73, 40, 40, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 14px;
+    transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== КОНТЕНТ ===== */
+.container {
+    margin-top: 0px;
+    margin-bottom: 30px;
+    width: 90%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+/* ===== GLASS BLOCK ===== */
+.main_card {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 28px;
+    background: rgba(73, 40, 40, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: 0.3s ease;
+}
+.main_card_co {
+    width: 90%;
+    height: 760px;
+    max-height: 1100px;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 28px;
+    background: rgba(73, 40, 40, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: 0.3s ease;
+}
+.card {
+    padding: 30px;
+    border-radius: 28px;
+    background: rgba(73, 40, 40, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.33);
+    color: white;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.main_card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.main_card h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.main_card p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.card img {
+    border-radius: 28px;
+}
+
+.main_card img {
+    border-radius: 28px;
+}
+.main_card_co:hover{
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.12);
+}
+.main_card_co h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+.main_card_co p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+.main_card_cos img {
+    border-radius: 28px;
+}
+.nav-links a {
+    text-decoration: none;
+    position: relative;
+    color: white;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 14px;
+    transition: 0.25s ease;
+}
+
+/* Hover */
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ACTIVE */
+.nav-links a.active {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.4),
+        0 0 15px rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+}
+
+.main_card_co h2 {
+    display: grid;
+    place-items: center;
+    font-size: 70px;
+    text-transform: uppercase;
+    color: #fff;
+    -webkit-text-stroke: 2px black;
+}
+
+.sub_main_card_co {
+    padding: 30px;
+    width: 500px;
+    border-radius: 28px;
+    background: rgba(73, 40, 40, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.33);
+    color: white;
+    transition: 0.3s ease;
+}
+.sub_main_card_co {
+    font-size: 42px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon {
+    width: 48px;
+    height: auto;
+}
+
+
+.sub_main_card_co {
+    padding: 30px;
+    width: 450px;
+    border-radius: 28px;
+    background: rgba(73, 40, 40, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.33);
+    color: white;
+    transition: 0.3s ease;
+}
+
+.sub_main_card_co2 {
+    margin-top: 20px;
+    padding: 30px;
+    width: 450px;
+    border-radius: 28px;
+    background: rgba(73, 40, 40, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.33);
+    color: white;
+    transition: 0.3s ease;
+}
+
+.sub_main_card_co2 {
+    font-size: 42px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.icon2 {
+    width: 48px;
+    height: auto;
+}
+
+
+/* Кнопка-кружочек */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px rgba(255,255,255,0.4);
+}
+.menu-btn:active {
+    transform: scale(0.96);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.menu-btn-send,
+.menu-btn-send2,
+.menu-btn-send3,
+.menu-btn-send4{
+    margin-top: 12px;
+    position: flex;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+
+    padding: 15px;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+.menu-btn-send:hover,
+.menu-btn-send2:hover,
+.menu-btn-send3:hover,
+.menu-btn-send4:hover {
+background: rgba(255, 255, 255, 0.18);
+transform: translateY(-2px);
+
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px rgba(255,255,255,0.4);
+}
+.menu-btn-send:active
+.menu-btn-send2:active
+.menu-btn-send3:active
+.menu-btn-send4:active {
+    transform: scale(0.96);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Боковая панель */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    transition: 0.5s;
+    z-index: 999;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  
+    /* Прячем панель за правый край */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Класс, который мы будем добавлять через JS */
+.sidebar.active {
+    transform: translateX(0);
+}
+
+/* Стили ссылок внутри */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 40px;
+}
+
+.sidebar-content a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    transition: color 0.3s;
+}
+
+.sidebar-content a:hover { color: #ffa26d; }
+
+/* Кнопка закрытия внутри панели */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.contact-form {
+    flex: 1;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.main_sheet{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.main_sheet label{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+.contact-form input,
+.contact-form textarea {
+    padding: 12px 16px;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.2);
+
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    color: white;
+    font-size: 14px;
+
+    outline: none;
+    transition: 0.25s ease;
+}
+.contact-form textarea {
+    min-height:120px;
+    resize: none;
+}
+.contact-form input::placeholder,
+.contact-form textarea::place holder {
+    color: rgba(255,255,255,0.5);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.12);
+
+    box-shadow: 0 0 15px rgba(255,255,255,0.15)
+}
+
+.buy-btn1,
+.buy-btn2,
+.buy-btn3,
+.buy-btn4 {
+    margin-top: 12px;
+    position: flex;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+
+    padding: 15px;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}

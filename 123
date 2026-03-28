@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Друзьяшки | Шаурмечная от души</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefaf5;
+      color: #2c1a10;
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      background: #ffffffdd;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 5%;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid #ffddd3;
+    }
+
+    .logo {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .logo:hover {
+      transform: scale(1.02);
+    }
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #d35400, #e67e22);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #b45f2b;
+      display: block;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      color: #5a3a28;
+    }
+    .nav-btn i {
+      font-size: 1.2rem;
+    }
+    .nav-btn.active {
+      background: #e67e22;
+      color: white;
+      box-shadow: 0 6px 14px rgba(230,126,34,0.3);
+    }
+    .nav-btn:not(.active):hover {
+      background: #ffede3;
+      color: #d35400;
+    }
+
+    .cart-icon {
+      position: relative;
+      background: #2c1a10;
+      color: white;
+      border-radius: 50px;
+      padding: 0.5rem 1.2rem;
+    }
+    .cart-count {
+      background: #e67e22;
+      border-radius: 40px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-left: 6px;
+    }
+
+    .section {
+      display: none;
+      padding: 2rem 5% 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      animation: fade 0.25s ease;
+    }
+    .section.active-section {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      border-left: 7px solid #e67e22;
+      padding-left: 1.2rem;
+      color: #2c1a10;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      border: 1px solid #ffe0d4;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 36px -16px rgba(210, 80, 0, 0.2);
+    }
+    .card-img {
+      height: 180px;
+      background: linear-gradient(145deg, #ffeadb, #ffd8c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+    .card-info {
+      padding: 1.3rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .price {
+      color: #e67e22;
+      font-weight: 800;
+    }
+    .desc {
+      color: #6b4c38;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .add-to-cart {
+      background: #fef2e8;
+      border: none;
+      width: 100%;
+      padding: 0.7rem;
+      font-weight: 700;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #d35400;
+      font-family: inherit;
+    }
+    .add-to-cart:hover {
+      background: #e67e22;
+      color: white;
+    }
+
+    .promo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .promo-card {
+      background: white;
+      border-radius: 40px;
+      max-width: 380px;
+      flex: 1;
+      border: 1px solid #ffd5c2;
+      padding: 1.8rem;
+      text-align: center;
+      transition: 0.2s;
+      background: #fff8f2;
+    }
+    .promo-icon {
+      font-size: 3rem;
+      background: #e67e2220;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      margin: 0 auto 1rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+    }
+    .promo-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .promo-desc {
+      margin: 1rem 0;
+      color: #5c3d2a;
+    }
+    .promo-badge {
+      background: #e67e22;
+      color: white;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .cart-modal.active {
+      display: flex;
+    }
+    .cart-content {
+      background: white;
+      width: 90%;
+      max-width: 550px;
+      max-height: 85vh;
+      border-radius: 40px;
+      padding: 1.5rem;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px black;
+      animation: fadeUp 0.2s;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: scale(0.96);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ffddd3;
+      padding-bottom: 0.5rem;
+    }
+    .cart-items {
+      list-style: none;
+      margin: 1rem 0;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #f0e0d4;
+    }
+    .item-info {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .item-name {
+      font-weight: 700;
+    }
+    .item-price {
+      color: #e67e22;
+    }
+    .item-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .qty-btn {
+      background: #f0e0d4;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .remove-item {
+      color: #b45f2b;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .cart-total {
+      font-weight: 800;
+      font-size: 1.4rem;
+      text-align: right;
+      margin: 1rem 0;
+      border-top: 2px dashed #ffcfb5;
+      padding-top: 1rem;
+    }
+    .checkout-btn {
+      background: #e67e22;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .close-cart {
+      background: #eee2d9;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .empty-cart {
+      text-align: center;
+      padding: 2rem;
+      color: #b45f2b;
+    }
+
+    .order-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1100;
+    }
+    .order-modal.active {
+      display: flex;
+    }
+    .order-content {
+      background: white;
+      width: 90%;
+      max-width: 550px;
+      border-radius: 40px;
+      padding: 1.8rem;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+      animation: fadeUp 0.2s;
+    }
+    .order-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      color: #d35400;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #5a3a28;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 60px;
+      border: 1.5px solid #ffd5c2;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #fff;
+      transition: 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: #e67e22;
+      box-shadow: 0 0 0 3px rgba(230,126,34,0.2);
+    }
+    .card-details {
+      background: #fff7f2;
+      padding: 1rem;
+      border-radius: 28px;
+      margin-top: 0.5rem;
+      border: 1px solid #ffe0d4;
+    }
+    .card-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .card-row .form-group {
+      flex: 1;
+    }
+    .race-agreement {
+      background: #fff0e6;
+      border-left: 5px solid #e67e22;
+      padding: 1rem;
+      border-radius: 24px;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    .race-agreement label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-weight: normal;
+    }
+    .race-agreement input {
+      width: auto;
+      transform: scale(1.1);
+      margin-right: 5px;
+    }
+    .order-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+    .order-actions button {
+      flex: 1;
+      padding: 0.9rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .submit-order {
+      background: #e67e22;
+      color: white;
+    }
+    .cancel-order {
+      background: #eee2d9;
+      color: #5a3a28;
+    }
+    .order-summary {
+      background: #fef2e8;
+      padding: 0.8rem;
+      border-radius: 28px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid #ffddd3;
+      background: #fff7f2;
+      margin-top: 2rem;
+    }
+    .owners {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem 0 0.5rem;
+      font-size: 0.9rem;
+      color: #b45f2b;
+      font-weight: 500;
+    }
+    .owners span {
+      background: #ffede3;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+    }
+    .footer-copyright {
+      font-size: 0.8rem;
+      color: #9b7a64;
+      margin-top: 1rem;
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-buttons {
+        justify-content: center;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2c1a10;
+      color: #ffd8c4;
+      padding: 10px 20px;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      z-index: 1200;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    button {
+      cursor: pointer;
+    }
+    .warning-text {
+      color: #d35400;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo" id="homeLogo">
+    <h1>🥙 Друзьяшки</h1>
+    <span>шаурмечная от души · своя атмосфера</span>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-btn active" data-section="menu"><i class="fas fa-utensils"></i> Меню</button>
+    <button class="nav-btn" data-section="promo"><i class="fas fa-tags"></i> Акции</button>
+    <button class="nav-btn cart-icon" id="openCartBtn"><i class="fas fa-shopping-basket"></i> Корзина <span id="cartBadge" class="cart-count">0</span></button>
+  </div>
+</header>
+
+<section id="menu-section" class="section active-section">
+  <div class="section-title"><i class="fas fa-drumstick-bite"></i> Наше меню — любимое с детства</div>
+  <div class="menu-grid" id="menuContainer"></div>
+</section>
+
+<section id="promo-section" class="section">
+  <div class="section-title"><i class="fas fa-gift"></i> Специально для друзей</div>
+  <div class="promo-grid" id="promoContainer"></div>
+</section>
+
+<div id="cartModal" class="cart-modal">
+  <div class="cart-content">
+    <div class="cart-header">
+      <span>🛒 Моя корзина</span>
+      <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i> Закрыть</button>
+    </div>
+    <div id="cartItemsList"><div class="empty-cart">Корзина пуста</div></div>
+    <div id="cartTotalBlock" style="display: none;">
+      <div class="cart-total">Итого: <span id="cartTotal">0</span> ₽</div>
+      <button class="checkout-btn" id="checkoutBtn">✅ Оформить заказ</button>
+    </div>
+  </div>
+</div>
+
+<div id="orderModal" class="order-modal">
+  <div class="order-content">
+    <h2><i class="fas fa-clipboard-list"></i> Оформление заказа</h2>
+    <div class="order-summary" id="orderSummary"></div>
+    <form id="orderForm">
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Имя</label>
+        <input type="text" id="firstName" placeholder="Максим" required>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-user-tag"></i> Фамилия</label>
+        <input type="text" id="lastName" placeholder="Белов" required>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-map-marker-alt"></i> Адрес доставки</label>
+        <input type="text" id="address" placeholder="Улица, дом, квартира" required>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-credit-card"></i> Способ оплаты</label>
+        <select id="paymentMethod">
+          <option value="cash">💵 Наличными курьеру</option>
+          <option value="card">💳 Картой онлайн</option>
+          <option value="race">🔞 Гонка с Кирюхой</option>
+        </select>
+      </div>
+
+      <div id="cardFields" style="display: none;">
+        <div class="card-details">
+          <div class="form-group"><label>Номер карты</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456"></div>
+          <div class="card-row">
+            <div class="form-group"><label>ММ/ГГ</label><input type="text" id="cardExpiry" placeholder="12/28"></div>
+            <div class="form-group"><label>CVV</label><input type="password" id="cardCvv" placeholder="123"></div>
+          </div>
+          <div class="form-group"><label>Имя держателя</label><input type="text" id="cardHolder" placeholder="IVANOV MAXIM"></div>
+        </div>
+      </div>
+
+      <div id="raceFields" style="display: none;">
+        <div class="race-agreement">
+          <label>
+            <input type="checkbox" id="raceAgreement">
+            <span>⚠️ Я принимаю условия: в случае смерти или травм в результате гонки, <strong>Друзьяшки</strong> не несут ответственности. Гонка проводится на добровольных началах 🏁</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>🏎️ Выбери Кирюху:</label>
+          <select id="kiryuhaVariant">
+            <option value="Кирилл">Кирилл (классический)</option>
+            <option value="Кирюха">Кирюха (дерзкий)</option>
+            <option value="Кирильник">Кирильник (скоростной)</option>
+            <option value="Цирюльник">Цирюльник (непредсказуемый)</option>
+            <option value="Крендель">Крендель (дрифтер)</option>
+          </select>
+        </div>
+        <div class="race-agreement" style="background: #ffe8dc;">
+          <p>🏆 <strong>Условия гонки:</strong> если победишь — еда <span class="warning-text">БЕСПЛАТНО</span> + в подарок <strong>Redmi 9</strong>! 🎁</p>
+          <p>💀 Если проиграешь — оплачиваешь заказ в двойном размере.</p>
+        </div>
+      </div>
+
+      <div class="order-actions">
+        <button type="button" class="cancel-order" id="cancelOrderBtn">Отмена</button>
+        <button type="submit" class="submit-order">✅ Подтвердить заказ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="owners">
+    <span><i class="fas fa-heart"></i> Белов Максим</span>
+    <span><i class="fas fa-heart"></i> Савин Павел</span>
+    <span><i class="fas fa-heart"></i> Скрыпнев Алексей</span>
+    <span><i class="fas fa-heart"></i> Бежанян Роман</span>
+    <span><i class="fas fa-heart"></i> Кадырова Индира</span>
+  </div>
+  <div class="footer-copyright">🥙 «Друзьяшки» — шаурма, которая объединяет | Время работы: 11:00–23:00</div>
+</footer>
+<div id="toastMsg" class="toast-msg"></div>
+
+<script>
+  const menuItems = [
+    { id: 1, name: "Шаурма Классическая дружба", desc: "Курица, свежие овощи, чесночный соус", price: 290, icon: "🌯" },
+    { id: 2, name: "Шаурма Острая симпатия", desc: "Курица, халапеньо, острый соус", price: 320, icon: "🌶️" },
+    { id: 3, name: "Шаурма Сырный союз", desc: "Двойная порция сыра, курица, соус цезарь", price: 350, icon: "🧀" },
+    { id: 4, name: "Шаурма Говяжий комплимент", desc: "Мраморная говядина, пикантный соус", price: 390, icon: "🥩" },
+    { id: 5, name: "Шаурма Вегетарианские посиделки", desc: "Грибы, перец, оливки, соус песто", price: 270, icon: "🥑" },
+    { id: 6, name: "Шаурма Люкс по-дружески", desc: "Курица+говядина, картофель фри внутри", price: 430, icon: "👑" },
+    { id: 7, name: "Дружба-фри", desc: "Хрустящий картофель с солью", price: 120, icon: "🍟" },
+    { id: 8, name: "Лимонад 'Обнимашки'", desc: "Тархун/имбирный/классический", price: 150, icon: "🍋" }
+  ];
+
+  const promotions = [
+    { id: 1, title: "Вторник с Кирюхой", desc: "Каждый вторник скидка 20% на всё меню", icon: "🎉", badge: "каждый вторник" },
+    { id: 2, title: "Компания друзьяшек", desc: "При заказе от 3 шаурм — картошка фри и лимонад в подарок!", icon: "👥", badge: "активна" },
+    { id: 3, title: "Первый раз :)", desc: "Первый заказ через сайт — скидка 100₽", icon: "😊", badge: "для новичков" },
+    { id: 4, title: "Вечерний Леха", desc: "С 20:00 до закрытия любая шаурма по цене 250₽", icon: "🌙", badge: "вечерний спешл" }
+  ];
+
+  let cart = [];
+
+  function showToast(msg, dur = 2000) { let t = document.getElementById("toastMsg"); if(t){ t.textContent = msg; t.style.opacity = "1"; setTimeout(() => t.style.opacity = "0", dur); } }
+  function loadCart() { let s = localStorage.getItem("druzyashki_cart"); if(s) try { cart = JSON.parse(s); if(!Array.isArray(cart)) cart=[]; } catch(e){ cart=[]; } else cart=[]; updateCartUI(); updateCartBadge(); }
+  function saveCart() { localStorage.setItem("druzyashki_cart", JSON.stringify(cart)); updateCartBadge(); updateCartUI(); }
+  function updateCartBadge() { let total = cart.reduce((s,i)=>s+i.quantity,0); let b = document.getElementById("cartBadge"); if(b) b.innerText = total; }
+  function updateCartUI() { let c = document.getElementById("cartItemsList"), tb = document.getElementById("cartTotalBlock"), ts = document.getElementById("cartTotal"); if(!c) return;
+    if(cart.length===0){ c.innerHTML='<div class="empty-cart">Корзина пуста</div>'; if(tb) tb.style.display="none"; return; }
+    let total=0, html='<ul class="cart-items">';
+    cart.forEach(i=>{ total+=i.price*i.quantity; html+=`<li class="cart-item"><div class="item-info"><span class="item-name">${escapeHtml(i.name)}</span><span class="item-price">${i.price} ₽</span></div><div class="item-qty"><button class="qty-btn" data-id="${i.id}" data-delta="-1">-</button><span>${i.quantity}</span><button class="qty-btn" data-id="${i.id}" data-delta="1">+</button><button class="remove-item" data-id="${i.id}"><i class="fas fa-trash-alt"></i></button></div></li>`; });
+    html+=`</ul>`; c.innerHTML=html; if(tb) tb.style.display="block"; if(ts) ts.innerText=total;
+    document.querySelectorAll('.qty-btn').forEach(b=>{ b.addEventListener('click',()=>{ let id=parseInt(b.dataset.id), delta=parseInt(b.dataset.delta); changeQuantity(id,delta); }); });
+    document.querySelectorAll('.remove-item').forEach(b=>{ b.addEventListener('click',()=>{ removeItemCompletely(parseInt(b.dataset.id)); }); });
+  }
+  function changeQuantity(id,delta){ let idx=cart.findIndex(i=>i.id===id); if(idx!==-1){ let nq=cart[idx].quantity+delta; if(nq<=0) cart.splice(idx,1); else cart[idx].quantity=nq; saveCart(); } }
+  function removeItemCompletely(id){ cart=cart.filter(i=>i.id!==id); saveCart(); }
+  function addToCart(item){ let ex=cart.find(i=>i.id===item.id); if(ex) ex.quantity+=1; else cart.push({id:item.id,name:item.name,price:item.price,quantity:1}); saveCart(); showToast(`🥙 ${item.name} добавлена!`); }
+  function escapeHtml(s){ return s.replace(/[&<>]/g,function(m){ return m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'; }); }
+
+  function renderMenu(){ let cont=document.getElementById("menuContainer"); if(!cont) return; cont.innerHTML=""; menuItems.forEach(i=>{ let card=document.createElement("div"); card.className="card"; card.innerHTML=`<div class="card-img">${i.icon}</div><div class="card-info"><div class="card-title"><span>${escapeHtml(i.name)}</span><span class="price">${i.price} ₽</span></div><div class="desc">${escapeHtml(i.desc)}</div><button class="add-to-cart" data-id="${i.id}"><i class="fas fa-cart-plus"></i> В корзину</button></div>`; cont.appendChild(card); });
+    document.querySelectorAll(".add-to-cart").forEach(b=>{ b.addEventListener("click",()=>{ let p=menuItems.find(x=>x.id===parseInt(b.dataset.id)); if(p) addToCart(p); }); });
+  }
+  function renderPromotions(){ let cont=document.getElementById("promoContainer"); if(!cont) return; cont.innerHTML=""; promotions.forEach(p=>{ cont.innerHTML+=`<div class="promo-card"><div class="promo-icon"><i class="fas fa-star"></i></div><div class="promo-title">${escapeHtml(p.title)}</div><div class="promo-desc">${escapeHtml(p.desc)}</div><div class="promo-badge">✨ ${escapeHtml(p.badge)}</div></div>`; }); }
+
+  function goToHome(){ switchSection('menu'); window.scrollTo({top:0}); }
+  function switchSection(id){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active-section')); document.getElementById(`${id}-section`).classList.add('active-section'); document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active')); let a=document.querySelector(`.nav-btn[data-section="${id}"]`); if(a) a.classList.add('active'); }
+
+  const orderModal = document.getElementById("orderModal");
+  const paymentSelect = document.getElementById("paymentMethod");
+  const cardFields = document.getElementById("cardFields");
+  const raceFields = document.getElementById("raceFields");
+  const orderForm = document.getElementById("orderForm");
+  const raceAgreement = document.getElementById("raceAgreement");
+
+  function getCartTotal(){ return cart.reduce((s,i)=>s+i.price*i.quantity,0); }
+  function formatCartItems(){ return cart.map(i=>`${i.name} x${i.quantity} — ${i.price*i.quantity}₽`).join(", "); }
+
+  function openOrderModal(){ if(cart.length===0){ showToast("Корзина пуста"); return; } document.getElementById("orderSummary").innerHTML=`<strong>Ваш заказ:</strong> ${formatCartItems()}<br><strong>Итого: ${getCartTotal()} ₽</strong>`; orderModal.classList.add("active"); }
+  function closeOrderModal(){ orderModal.classList.remove("active"); }
+
+  paymentSelect.addEventListener("change",()=>{
+    let val = paymentSelect.value;
+    cardFields.style.display = val === "card" ? "block" : "none";
+    raceFields.style.display = val === "race" ? "block" : "none";
+  });
+
+  orderForm.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    let firstName = document.getElementById("firstName").value.trim();
+    let lastName = document.getElementById("lastName").value.trim();
+    let address = document.getElementById("address").value.trim();
+    if(!firstName || !lastName || !address){ showToast("Заполните имя, фамилию и адрес"); return; }
+    let method = paymentSelect.value;
+
+    if(method === "card"){
+      let cardNum = document.getElementById("cardNumber").value.replace(/\s/g,'');
+      let expiry = document.getElementById("cardExpiry").value;
+      let cvv = document.getElementById("cardCvv").value;
+      let holder = document.getElementById("cardHolder").value.trim();
+      if(!cardNum || cardNum.length<15){ showToast("Введите номер карты"); return; }
+      if(!expiry || !expiry.match(/^\d{2}\/\d{2}$/)){ showToast("Введите срок ММ/ГГ"); return; }
+      if(!cvv || cvv.length<3){ showToast("Введите CVV"); return; }
+      if(!holder){ showToast("Введите имя держателя"); return; }
+      showToast(`🎉 Спасибо, ${firstName}! Заказ оплачен картой. Ждите доставку.`);
+      cart=[]; saveCart(); closeOrderModal(); closeCartModal(); updateCartUI();
+    }
+    else if(method === "race"){
+      let agreed = document.getElementById("raceAgreement").checked;
+      if(!agreed){ showToast("⚠️ Необходимо принять условия гонки!"); return; }
+      let kiryuha = document.getElementById("kiryuhaVariant").value;
+      let raceResult = Math.random() < 0.5 ? "win" : "lose";
+      let total = getCartTotal();
+      if(raceResult === "win"){
+        showToast(`🏆 ПОБЕДА! Ты обогнал ${kiryuha}! Еда БЕСПЛАТНО + Redmi 9 в подарок! 🎁📱`, 5000);
+        cart = [];
+        saveCart();
+        closeOrderModal();
+        closeCartModal();
+        updateCartUI();
+      } else {
+        let doublePrice = total * 2;
+        showToast(`💀 ПРОИГРЫШ! ${kiryuha} оказался быстрее. Оплата в двойном размере: ${doublePrice} ₽`, 4000);
+        cart = [];
+        saveCart();
+        closeOrderModal();
+        closeCartModal();
+        updateCartUI();
+      }
+    }
+    else {
+      showToast(`🎉 Спасибо, ${firstName}! Заказ оплачен наличными. Ждите доставку.`);
+      cart=[]; saveCart(); closeOrderModal(); closeCartModal(); updateCartUI();
+    }
+  });
+
+  document.getElementById("cancelOrderBtn")?.addEventListener("click", closeOrderModal);
+  const cartModal = document.getElementById("cartModal");
+  const openCartBtn = document.getElementById("openCartBtn");
+  const closeCartBtn = document.getElementById("closeCartBtn");
+  const checkoutMainBtn = document.getElementById("checkoutBtn");
+  function openCartModal(){ updateCartUI(); cartModal.classList.add("active"); }
+  function closeCartModal(){ cartModal.classList.remove("active"); }
+  openCartBtn?.addEventListener("click", openCartModal);
+  closeCartBtn?.addEventListener("click", closeCartModal);
+  cartModal?.addEventListener("click", (e)=>{ if(e.target===cartModal) closeCartModal(); });
+  checkoutMainBtn?.addEventListener("click", ()=>{ closeCartModal(); openOrderModal(); });
+  document.querySelectorAll(".nav-btn").forEach(b=>{ if(b.id!=="openCartBtn") b.addEventListener("click",()=>{ if(b.dataset.section) switchSection(b.dataset.section); }); });
+  document.getElementById("homeLogo")?.addEventListener("click", goToHome);
+  renderMenu(); renderPromotions(); loadCart();
+</script>
+</body>
+</html>
